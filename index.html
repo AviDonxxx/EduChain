@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduChain MicroGrant Platform</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="glass-effect">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <svg viewBox="0 0 100 100" width="60" height="60">
+            <circle cx="50" cy="50" r="45" fill="url(#grad1)"/>
+            <text x="50" y="65" text-anchor="middle" fill="white" font-size="40" font-weight="bold">E</text>
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <div>
+          <h1>EduChain</h1>
+          <p class="subtitle">Blockchain-Powered Educational Funding</p>
+        </div>
+      </div>
+      <div class="wallet-info">
+        <div class="user-status-block glass-effect">
+          <div class="status-icon" id="userStatusIcon">🌍</div>
+          <div class="status-info">
+            <div class="status-label">Твой статус:</div>
+            <div class="status-value" id="userStatus">Пользователь мира</div>
+          </div>
+          <div class="status-demo-buttons">
+            <button class="demo-btn" onclick="setUserStatus('public')" title="Пользователь мира">🌍</button>
+            <button class="demo-btn" onclick="setUserStatus('student')" title="Студент">👨‍🎓</button>
+            <button class="demo-btn" onclick="setUserStatus('committee')" title="Комитет">⚖️</button>
+            <button class="demo-btn" onclick="setUserStatus('institution')" title="Учебное заведение">🏛️</button>
+          </div>
+          <button class="status-reset-btn" onclick="resetUserStatus()" title="Сбросить статус">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 6h18"/>
+              <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+              <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+            </svg>
+          </button>
+        </div>
+        <span class="wallet-status" id="walletStatus">
+          <span class="status-dot"></span> Not Connected
+        </span>
+        <button class="btn-wallet gradient-btn" onclick="connectWallet()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="7" width="18" height="13" rx="2"/>
+            <path d="M3 11h18"/>
+            <circle cx="7" cy="15" r="1"/>
+          </svg>
+          Connect
+        </button>
+        
+        <!-- Registration Dropdown -->
+        <div class="registration-dropdown">
+          <button class="btn btn-ghost dropdown-trigger" onclick="toggleRegistrationMenu(event)">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="8.5" cy="7" r="4"/>
+              <line x1="20" y1="8" x2="20" y2="14"/>
+              <line x1="23" y1="11" x2="17" y2="11"/>
+            </svg>
+            Регистрация
+          </button>
+          <div class="dropdown-menu" id="registrationMenu">
+            <a href="registration-student.html" class="dropdown-item">
+              <span class="item-icon">👨‍🎓</span>
+              <div class="item-content">
+                <div class="item-title">Студент</div>
+                <div class="item-description">Подать заявку на грант</div>
+              </div>
+            </a>
+            <a href="registration-committee.html" class="dropdown-item">
+              <span class="item-icon">⚖️</span>
+              <div class="item-content">
+                <div class="item-title">Комитет</div>
+                <div class="item-description">Рецензировать заявки</div>
+              </div>
+            </a>
+            <a href="registration-institution.html" class="dropdown-item">
+              <span class="item-icon">🏛️</span>
+              <div class="item-content">
+                <div class="item-title">Учебное заведение</div>
+                <div class="item-description">Управление заявками</div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav-tabs glass-effect">
+      <button class="nav-tab active" data-role="student">
+        <div class="tab-content">
+          <span class="tab-icon">👨‍🎓</span>
+          <div class="tab-text">
+            <span class="tab-title">Student</span>
+            <span class="tab-subtitle">Apply for grants</span>
+          </div>
+        </div>
+      </button>
+      <button class="nav-tab" data-role="public">
+        <div class="tab-content">
+          <span class="tab-icon">🌍</span>
+          <div class="tab-text">
+            <span class="tab-title">Public</span>
+            <span class="tab-subtitle">View statistics</span>
+          </div>
+        </div>
+      </button>
+      <button class="nav-tab" data-role="committee">
+        <div class="tab-content">
+          <span class="tab-icon">⚖️</span>
+          <div class="tab-text">
+            <span class="tab-title">Committee</span>
+            <span class="tab-subtitle">Review grants</span>
+          </div>
+        </div>
+      </button>
+      <button class="nav-tab" data-role="institutions">
+        <div class="tab-content">
+          <span class="tab-icon">🏛️</span>
+          <div class="tab-text">
+            <span class="tab-title">Institutions</span>
+            <span class="tab-subtitle">Browse universities</span>
+          </div>
+        </div>
+      </button>
+      <button class="nav-tab" data-role="sponsors">
+        <div class="tab-content">
+          <span class="tab-icon">🤝</span>
+          <div class="tab-text">
+            <span class="tab-title">Sponsors</span>
+            <span class="tab-subtitle">Funding partners</span>
+          </div>
+        </div>
+      </button>
+      <button class="nav-tab" data-role="universities">
+        <div class="tab-content">
+          <span class="tab-icon">🎓</span>
+          <div class="tab-text">
+            <span class="tab-title">Top Universities</span>
+            <span class="tab-subtitle">Requirements & Info</span>
+          </div>
+        </div>
+      </button>
+      <button class="nav-tab" data-role="gaming">
+        <div class="tab-content">
+          <span class="tab-icon">🎮</span>
+          <div class="tab-text">
+            <span class="tab-title">Gaming Rewards</span>
+            <span class="tab-subtitle">Подарки за успеваемость</span>
+          </div>
+        </div>
+      </button>
+      <div class="tab-indicator"></div>
+    </nav>
+
+    <!-- Student View -->
+    <div id="student-view" class="content-area active">
+      <div class="page-header">
+        <h2 class="page-title">Submit Grant Application</h2>
+        <p class="page-description">Complete the form to apply for educational funding</p>
+        <div class="registration-links">
+          <a href="registration-student.html" class="btn btn-ghost">👨‍🎓 Register as Student</a>
+          <a href="registration-committee.html" class="btn btn-ghost">⚖️ Join Committee</a>
+          <a href="registration-institution.html" class="btn btn-ghost">🏛️ Register Institution</a>
+        </div>
+      </div>
+            
+      <form id="grantForm" class="grant-form glass-effect">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Student Name</label>
+            <div class="input-wrapper">
+              <span class="input-icon">👤</span>
+              <input type="text" id="studentName" required placeholder="Enter your full name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Institution</label>
+            <div class="input-wrapper">
+              <span class="input-icon">🏛️</span>
+              <input type="text" id="institution" required placeholder="Your university">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Project Title</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📝</span>
+            <input type="text" id="projectTitle" required placeholder="Title of your project">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Project Category</label>
+          <div class="input-wrapper">
+            <span class="input-icon">📁</span>
+            <select id="projectCategory" required>
+              <option value="">Select a category</option>
+              <option value="technology">💻 Technology & Innovation</option>
+              <option value="research">🔬 Academic Research</option>
+              <option value="community">🤝 Community Service</option>
+              <option value="arts">🎨 Arts & Culture</option>
+              <option value="environment">🌱 Environmental</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Project Description</label>
+          <textarea id="projectDesc" required placeholder="Describe your project and how you'll use the grant..."></textarea>
+          <div class="char-counter">
+            <span id="charCount">0</span> / 500
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Grant Amount (ETH)</label>
+            <div class="input-wrapper">
+              <span class="input-icon">💰</span>
+              <input type="number" id="grantAmount" step="0.01" min="0.01" max="5" required placeholder="0.5">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Duration (months)</label>
+            <div class="input-wrapper">
+              <span class="input-icon">⏱️</span>
+              <input type="number" id="projectDuration" min="1" max="12" required placeholder="3">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Wallet Address</label>
+          <div class="input-wrapper">
+            <span class="input-icon">🔐</span>
+            <input type="text" id="walletAddress" required placeholder="0x...">
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="reset" class="btn btn-ghost">Clear</button>
+          <button type="submit" class="btn gradient-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 2L11 13"/>
+              <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+            </svg>
+            Submit Application
+          </button>
+        </div>
+      </form>
+
+      <div class="section-header">
+        <h3>My Applications</h3>
+        <div class="filter-pills">
+          <button class="pill active" data-filter="all">All</button>
+          <button class="pill" data-filter="pending">Pending</button>
+          <button class="pill" data-filter="approved">Approved</button>
+          <button class="pill" data-filter="rejected">Rejected</button>
+        </div>
+      </div>
+      <div id="myApplications" class="grants-grid"></div>
+    </div>
+
+    <!-- Public View -->
+    <div id="public-view" class="content-area">
+      <div class="page-header">
+        <h2 class="page-title">Public Statistics</h2>
+        <p class="page-description">Transparent view of all grants and funding</p>
+      </div>
+            
+      <div class="stats-grid">
+        <div class="stat-card glass-effect" style="--delay: 0s">
+          <div class="stat-icon gradient-text">📊</div>
+          <div class="stat-value" id="totalGrants">0</div>
+          <div class="stat-label">Applications</div>
+        </div>
+        <div class="stat-card glass-effect" style="--delay: 0.1s">
+          <div class="stat-icon gradient-text">✅</div>
+          <div class="stat-value" id="approvedGrants">0</div>
+          <div class="stat-label">Approved</div>
+        </div>
+        <div class="stat-card glass-effect" style="--delay: 0.2s">
+          <div class="stat-icon gradient-text">💰</div>
+          <div class="stat-value" id="totalFunding">0</div>
+          <div class="stat-label">Total Funding</div>
+        </div>
+        <div class="stat-card glass-effect" style="--delay: 0.3s">
+          <div class="stat-icon gradient-text">⏳</div>
+          <div class="stat-value" id="pendingGrants">0</div>
+          <div class="stat-label">Pending</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3>🏆 Recent Winners</h3>
+      </div>
+      <div id="winnersDisplay"></div>
+
+      <div class="section-header">
+        <h3>All Applications</h3>
+        <div class="search-wrapper">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="searchPublic" placeholder="Search...">
+        </div>
+      </div>
+      <div id="publicGrantsDisplay" class="grants-grid"></div>
+    </div>
+
+    <!-- Committee View -->
+    <div id="committee-view" class="content-area">
+      <div class="page-header">
+        <h2 class="page-title">Grant Review & Management</h2>
+        <p class="page-description">Review applications and manage grant decisions</p>
+      </div>
+
+      <div class="committee-dashboard glass-effect">
+        <div class="dashboard-stat">
+          <div class="stat-icon">📋</div>
+          <div>
+            <div class="stat-number" id="committeePending">0</div>
+            <div class="stat-text">Pending</div>
+          </div>
+        </div>
+        <div class="dashboard-stat">
+          <div class="stat-icon">✓</div>
+          <div>
+            <div class="stat-number" id="committeeVotes">0</div>
+            <div class="stat-text">Your Votes</div>
+          </div>
+        </div>
+        <div class="dashboard-stat">
+          <div class="stat-icon">📊</div>
+          <div>
+            <div class="stat-number" id="committeeApproved">0</div>
+            <div class="stat-text">Approved</div>
+          </div>
+        </div>
+        <div class="dashboard-stat">
+          <div class="stat-icon">❌</div>
+          <div>
+            <div class="stat-number" id="committeeRejected">0</div>
+            <div class="stat-text">Rejected</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3>Pending Applications</h3>
+        <div class="filter-pills">
+          <button class="pill active" data-filter="all">All</button>
+          <button class="pill" data-filter="pending">Pending</button>
+          <button class="pill" data-filter="approved">Approved</button>
+          <button class="pill" data-filter="rejected">Rejected</button>
+        </div>
+      </div>
+
+      <div id="committeeGrantsDisplay" class="grants-grid"></div>
+
+      <div class="section-header">
+        <h3>Application Management</h3>
+        <p class="section-description">Manage application decisions and communicate with applicants</p>
+      </div>
+
+      <div class="management-actions glass-effect">
+        <div class="action-group">
+          <h4>Bulk Actions</h4>
+          <div class="action-buttons">
+            <button class="btn btn-ghost" onclick="bulkApprove()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 2L11 13"/>
+                <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+              </svg>
+              Bulk Approve Selected
+            </button>
+            <button class="btn btn-ghost" onclick="bulkReject()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 6L6 18"/>
+                <path d="M6 6l12 12"/>
+              </svg>
+              Bulk Reject Selected
+            </button>
+            <button class="btn btn-ghost" onclick="exportDecisions()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7,10 12,15 17,10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+              </svg>
+              Export Decisions
+            </button>
+          </div>
+        </div>
+
+        <div class="action-group">
+          <h4>Communication</h4>
+          <div class="action-buttons">
+            <button class="btn btn-ghost" onclick="sendNotifications()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+              </svg>
+              Send Notifications
+            </button>
+            <button class="btn btn-ghost" onclick="viewStatistics()">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+              </svg>
+              View Statistics
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Institutions View -->
+    <div id="institutions-view" class="content-area">
+      <div class="page-header">
+        <h2 class="page-title">Educational Institutions</h2>
+        <p class="page-description">Universities and colleges participating in EduChain</p>
+      </div>
+
+      <!-- Institution Applications Review Section -->
+      <div class="institution-applications-section" style="display: none;" id="institutionApplicationsSection">
+        <div class="section-header">
+          <h3>Заявки студентов для рассмотрения</h3>
+          <div class="filter-pills">
+            <button class="pill active" data-filter="all">Все</button>
+            <button class="pill" data-filter="pending_institution">На рассмотрении</button>
+            <button class="pill" data-filter="approved_by_institution">Одобрены</button>
+            <button class="pill" data-filter="rejected_by_institution">Отклонены</button>
+          </div>
+        </div>
+        <div id="institutionApplicationsDisplay" class="grants-grid"></div>
+      </div>
+
+      <div class="institutions-stats glass-effect">
+        <div class="inst-stat">
+          <div class="inst-number" id="totalInstitutions">12</div>
+          <div class="inst-label">Total Institutions</div>
+        </div>
+        <div class="inst-stat">
+          <div class="inst-number" id="activeStudents">347</div>
+          <div class="inst-label">Active Students</div>
+        </div>
+        <div class="inst-stat">
+          <div class="inst-number" id="grantsAwarded">89</div>
+          <div class="inst-label">Grants Awarded</div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3>Featured Institutions</h3>
+        <div class="view-toggle">
+          <button class="toggle-btn active" data-view="grid">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <rect x="3" y="3" width="7" height="7" rx="1"/>
+              <rect x="14" y="3" width="7" height="7" rx="1"/>
+              <rect x="3" y="14" width="7" height="7" rx="1"/>
+              <rect x="14" y="14" width="7" height="7" rx="1"/>
+            </svg>
+          </button>
+          <button class="toggle-btn" data-view="list">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"/>
+              <line x1="8" y1="12" x2="21" y2="12"/>
+              <line x1="8" y1="18" x2="21" y2="18"/>
+              <line x1="3" y1="6" x2="3.01" y2="6"/>
+              <line x1="3" y1="12" x2="3.01" y2="12"/>
+              <line x1="3" y1="18" x2="3.01" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div id="institutionsDisplay" class="institutions-grid"></div>
+    </div>
+
+    <!-- Sponsors View -->
+    <div id="sponsors-view" class="content-area">
+      <div class="page-header">
+        <h2 class="page-title">Our Sponsors</h2>
+        <p class="page-description">Organizations supporting educational funding through blockchain technology</p>
+      </div>
+
+      <div class="sponsors-stats glass-effect">
+        <div class="sponsor-stat">
+          <div class="stat-icon">💰</div>
+          <div>
+            <div class="stat-number" id="totalSponsorFunding">0</div>
+            <div class="stat-text">Total ETH Donated</div>
+          </div>
+        </div>
+        <div class="sponsor-stat">
+          <div class="stat-icon">🤝</div>
+          <div>
+            <div class="stat-number" id="activeSponsors">0</div>
+            <div class="stat-text">Active Sponsors</div>
+          </div>
+        </div>
+        <div class="sponsor-stat">
+          <div class="stat-icon">🎯</div>
+          <div>
+            <div class="stat-number" id="sponsorGrants">0</div>
+            <div class="stat-text">Sponsored Grants</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3>Funding Partners</h3>
+      </div>
+      <div id="sponsorsDisplay" class="sponsors-grid"></div>
+    </div>
+
+    <!-- Universities View -->
+    <div id="universities-view" class="content-area">
+      <div class="page-header">
+        <h2 class="page-title">Top Universities & Requirements</h2>
+        <p class="page-description">Explore world-class universities and their admission requirements</p>
+      </div>
+
+      <div class="universities-stats glass-effect">
+        <div class="university-stat">
+          <div class="stat-icon">🏆</div>
+          <div>
+            <div class="stat-number">5</div>
+            <div class="stat-text">Top Universities</div>
+          </div>
+        </div>
+        <div class="university-stat">
+          <div class="stat-icon">📚</div>
+          <div>
+            <div class="stat-number">15+</div>
+            <div class="stat-text">Programs Available</div>
+          </div>
+        </div>
+        <div class="university-stat">
+          <div class="stat-icon">🌍</div>
+          <div>
+            <div class="stat-number">2</div>
+            <div class="stat-text">Countries</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3>University Requirements</h3>
+        <div class="search-wrapper">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <path d="M21 21l-4.35-4.35"/>
+          </svg>
+          <input type="text" id="searchUniversities" placeholder="Search universities...">
+        </div>
+      </div>
+      <div id="universitiesDisplay" class="universities-grid"></div>
+    </div>
+
+    <!-- Gaming Rewards View -->
+    <div id="gaming-view" class="content-area">
+      <div class="page-header">
+        <h2 class="page-title">🎮 Подарки за успеваемость в играх</h2>
+        <p class="page-description">Получайте игровые награды за ваши учебные достижения!</p>
+      </div>
+
+      <!-- User Progress Section -->
+      <div class="user-progress-section glass-effect">
+        <div class="progress-header">
+          <h3>Ваш прогресс</h3>
+          <div class="progress-stats">
+            <div class="stat-item">
+              <div class="stat-value" id="userAchievements">0</div>
+              <div class="stat-label">Достижений</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="userRewards">0</div>
+              <div class="stat-label">Получено наград</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-value" id="userPoints">0</div>
+              <div class="stat-label">Очков опыта</div>
+            </div>
+          </div>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+        </div>
+        <div class="progress-text">До следующего уровня: <span id="nextLevelProgress">100</span> очков</div>
+      </div>
+
+      <!-- Achievements Categories -->
+      <div class="achievements-categories">
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="academic">📚 Учебные</button>
+          <button class="category-tab" data-category="attendance">📅 Посещаемость</button>
+          <button class="category-tab" data-category="projects">💼 Проекты</button>
+          <button class="category-tab" data-category="competitions">🏆 Олимпиады</button>
+          <button class="category-tab" data-category="special">⭐ Особые</button>
+        </div>
+      </div>
+
+      <!-- Achievements Grid -->
+      <div class="achievements-grid" id="achievementsGrid">
+        <!-- Achievements will be populated by JavaScript -->
+      </div>
+
+      <!-- Rewards Section -->
+      <div class="rewards-section">
+        <div class="section-header">
+          <h3>🎁 Доступные награды</h3>
+          <div class="reward-filters">
+            <button class="filter-btn active" data-platform="all">Все платформы</button>
+            <button class="filter-btn" data-platform="steam">Steam</button>
+            <button class="filter-btn" data-platform="nft">NFT</button>
+            <button class="filter-btn" data-platform="telegram">Telegram</button>
+            <button class="filter-btn" data-platform="games">Игры</button>
+          </div>
+        </div>
+        <div class="rewards-grid" id="rewardsGrid">
+          <!-- Rewards will be populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Leaderboard -->
+      <div class="leaderboard-section">
+        <div class="section-header">
+          <h3>🏆 Таблица лидеров</h3>
+        </div>
+        <div class="leaderboard glass-effect" id="leaderboard">
+          <!-- Leaderboard will be populated by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+
+    <script src="script.js"></script>
+    <script src="additional-functions.js"></script>
+</body>
+</html>

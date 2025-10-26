@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration - EduChain</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="glass-effect">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" width="60" height="60">
+                        <circle cx="50" cy="50" r="45" fill="url(#grad1)"/>
+                        <text x="50" y="65" text-anchor="middle" fill="white" font-size="40" font-weight="bold">E</text>
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div>
+                    <h1>EduChain</h1>
+                    <p class="subtitle">Student Registration</p>
+                </div>
+            </div>
+            <div class="wallet-info">
+                <a href="index.html" class="btn btn-ghost">← Back to Main</a>
+            </div>
+        </header>
+
+        <!-- Registration Form -->
+        <div class="registration-container">
+            <div class="page-header">
+                <h2 class="page-title">Student Registration</h2>
+                <p class="page-description">Create your student account to apply for educational grants</p>
+            </div>
+
+            <form id="studentRegistrationForm" class="registration-form glass-effect">
+                <div class="form-section">
+                    <h3 class="section-title">Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Google Email Address *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="email" name="email" required placeholder="your.email@gmail.com" pattern=".*@gmail\.com$">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <small class="field-hint">Должен быть действующий Gmail аккаунт</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📱</span>
+                            <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 123-4567" pattern="[+]?[0-9\s\-()]+">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <small class="field-hint">Номер телефона для связи и верификации</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Educational Background</h3>
+                    
+                    <div class="form-group">
+                        <label for="institution">Graduated Institution *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🏛️</span>
+                            <input type="text" id="institution" name="institution" required placeholder="Your university or college">
+                            <div class="validation-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="graduationYear">Graduation Year *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">📅</span>
+                                <select id="graduationYear" name="graduationYear" required>
+                                    <option value="">Select year</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2015">2015</option>
+                                    <option value="earlier">Earlier</option>
+                                </select>
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="degree">Degree Level *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">🎓</span>
+                                <select id="degree" name="degree" required>
+                                    <option value="">Select degree</option>
+                                    <option value="bachelor">Bachelor's Degree</option>
+                                    <option value="master">Master's Degree</option>
+                                    <option value="phd">PhD</option>
+                                    <option value="associate">Associate Degree</option>
+                                    <option value="certificate">Certificate</option>
+                                </select>
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fieldOfStudy">Field of Study *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📚</span>
+                            <input type="text" id="fieldOfStudy" name="fieldOfStudy" required placeholder="e.g., Computer Science, Business Administration">
+                            <div class="validation-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Personal Profile</h3>
+                    
+                    <div class="form-group">
+                        <label for="biography">Biography *</label>
+                        <div class="input-wrapper">
+                            <textarea id="biography" name="biography" required placeholder="Tell us about yourself, your goals, and what drives you..."></textarea>
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <div class="char-counter">
+                            <span id="bioCharCount">0</span> / 500
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="qualities">Key Qualities & Skills *</label>
+                        <div class="input-wrapper">
+                            <textarea id="qualities" name="qualities" required placeholder="List your key qualities, skills, and achievements..."></textarea>
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <div class="char-counter">
+                            <span id="qualitiesCharCount">0</span> / 300
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Account Security</h3>
+                    
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔐</span>
+                            <input type="password" id="password" name="password" required placeholder="Create a strong password">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Password strength</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔐</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                            <div class="validation-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" onclick="window.location.href='index.html'">Cancel</button>
+                    <button type="submit" class="btn gradient-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13"/>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+                        </svg>
+                        Create Student Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="registration.js"></script>
+</body>
+</html>

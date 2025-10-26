@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Committee Registration - EduChain</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="registration.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="glass-effect">
+            <div class="logo-container">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 100 100" width="60" height="60">
+                        <circle cx="50" cy="50" r="45" fill="url(#grad1)"/>
+                        <text x="50" y="65" text-anchor="middle" fill="white" font-size="40" font-weight="bold">E</text>
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <div>
+                    <h1>EduChain</h1>
+                    <p class="subtitle">Committee Registration</p>
+                </div>
+            </div>
+            <div class="wallet-info">
+                <a href="index.html" class="btn btn-ghost">← Back to Main</a>
+            </div>
+        </header>
+
+        <!-- Registration Form -->
+        <div class="registration-container">
+            <div class="page-header">
+                <h2 class="page-title">Committee Registration</h2>
+                <p class="page-description">Join our committee to review and vote on grant applications</p>
+            </div>
+
+            <form id="committeeRegistrationForm" class="registration-form glass-effect">
+                <div class="form-section">
+                    <h3 class="section-title">Personal Information</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input type="text" id="firstName" name="firstName" required placeholder="Enter your first name">
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">👤</span>
+                                <input type="text" id="lastName" name="lastName" required placeholder="Enter your last name">
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Google Email Address *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📧</span>
+                            <input type="email" id="email" name="email" required placeholder="your.email@gmail.com" pattern=".*@gmail\.com$">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <small class="field-hint">Должен быть действующий Gmail аккаунт для верификации</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📱</span>
+                            <input type="tel" id="phone" name="phone" required placeholder="+1 (555) 123-4567" pattern="[+]?[0-9\s\-()]+">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <small class="field-hint">Номер телефона для двухфакторной аутентификации</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nickname">Committee Nickname *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🏷️</span>
+                            <input type="text" id="nickname" name="nickname" required placeholder="Choose a unique nickname">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <small class="field-hint">This will be visible to other committee members</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Professional Background</h3>
+                    
+                    <div class="form-group">
+                        <label for="organization">Organization/Institution *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🏢</span>
+                            <input type="text" id="organization" name="organization" required placeholder="Your current organization">
+                            <div class="validation-indicator"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="position">Position/Title *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">💼</span>
+                                <input type="text" id="position" name="position" required placeholder="Your current position">
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="experience">Years of Experience *</label>
+                            <div class="input-wrapper">
+                                <span class="input-icon">⏱️</span>
+                                <select id="experience" name="experience" required>
+                                    <option value="">Select experience</option>
+                                    <option value="1-3">1-3 years</option>
+                                    <option value="4-7">4-7 years</option>
+                                    <option value="8-15">8-15 years</option>
+                                    <option value="16+">16+ years</option>
+                                </select>
+                                <div class="validation-indicator"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expertise">Areas of Expertise *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🎯</span>
+                            <input type="text" id="expertise" name="expertise" required placeholder="e.g., Education, Technology, Research, Finance">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <small class="field-hint">Separate multiple areas with commas</small>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Committee Preferences</h3>
+                    
+                    <div class="form-group">
+                        <label for="reviewCategories">Preferred Review Categories *</label>
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reviewCategories" value="technology">
+                                <span class="checkmark"></span>
+                                💻 Technology & Innovation
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reviewCategories" value="research">
+                                <span class="checkmark"></span>
+                                🔬 Academic Research
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reviewCategories" value="community">
+                                <span class="checkmark"></span>
+                                🤝 Community Service
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reviewCategories" value="arts">
+                                <span class="checkmark"></span>
+                                🎨 Arts & Culture
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" name="reviewCategories" value="environment">
+                                <span class="checkmark"></span>
+                                🌱 Environmental
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="availability">Review Availability *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">📅</span>
+                            <select id="availability" name="availability" required>
+                                <option value="">Select availability</option>
+                                <option value="high">High (5+ hours/week)</option>
+                                <option value="medium">Medium (2-4 hours/week)</option>
+                                <option value="low">Low (1-2 hours/week)</option>
+                            </select>
+                            <div class="validation-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3 class="section-title">Account Security</h3>
+                    
+                    <div class="form-group">
+                        <label for="password">Password *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔐</span>
+                            <input type="password" id="password" name="password" required placeholder="Create a strong password">
+                            <div class="validation-indicator"></div>
+                        </div>
+                        <div class="password-strength">
+                            <div class="strength-bar">
+                                <div class="strength-fill"></div>
+                            </div>
+                            <span class="strength-text">Password strength</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password *</label>
+                        <div class="input-wrapper">
+                            <span class="input-icon">🔐</span>
+                            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirm your password">
+                            <div class="validation-indicator"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-ghost" onclick="window.location.href='index.html'">Cancel</button>
+                    <button type="submit" class="btn gradient-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 2L11 13"/>
+                            <path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+                        </svg>
+                        Create Committee Account
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="registration.js"></script>
+</body>
+</html>
