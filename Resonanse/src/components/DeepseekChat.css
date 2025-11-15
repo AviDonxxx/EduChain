@@ -1,0 +1,144 @@
+.deepseek-chat {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.deepseek-chat h2 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.model-selector {
+  margin-bottom: 1.5rem;
+}
+
+.model-selector label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.model-selector select {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 2px solid #dce0e5;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.model-selector select:hover:not(:disabled) {
+  border-color: #3498db;
+}
+
+.model-selector select:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.chat-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.chat-form textarea {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 2px solid #dce0e5;
+  border-radius: 8px;
+  resize: vertical;
+  transition: border-color 0.3s;
+}
+
+.chat-form textarea:focus {
+  outline: none;
+  border-color: #3498db;
+}
+
+.chat-form textarea:disabled {
+  background: #f0f0f0;
+  cursor: not-allowed;
+}
+
+.chat-form button {
+  padding: 0.875rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.chat-form button:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+.chat-form button:disabled {
+  background: #95a5a6;
+  cursor: not-allowed;
+}
+
+.error-message {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background: #fee;
+  border: 2px solid #fcc;
+  border-radius: 8px;
+  color: #c33;
+}
+
+.error-message strong {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.response-container {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border: 2px solid #e8ecef;
+  border-radius: 8px;
+}
+
+.response-container h3 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+  font-size: 1.3rem;
+}
+
+.response-content {
+  padding: 1rem;
+  background: #f8f9fa;
+  border-left: 4px solid #3498db;
+  border-radius: 4px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.response-meta {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dce0e5;
+  color: #7f8c8d;
+}
+
+.response-meta small {
+  font-size: 0.875rem;
+}
